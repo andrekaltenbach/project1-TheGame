@@ -33,19 +33,20 @@ class Player {
 }
 
 class Items {
-  constructor() {
+  constructor(itemType) {
     this.width = 20;
     this.height = 20;
     this.positionX = Math.floor(Math.random() * 480 + 1);
     this.positionY = Math.floor(Math.random() * 480 + 1);
     this.itemElement = null;
-    this.createItem();
+    this.itemType = itemType;
+    this.createItem(this.itemType);
     this.updateUi();
   }
 
   createItem() {
     this.itemElement = document.createElement('div');
-    this.itemElement.className = 'item';
+    this.itemElement.className = this.itemType;
     const pitch = document.getElementById('pitch');
     pitch.appendChild(this.itemElement);
   }
@@ -59,37 +60,63 @@ class Items {
     this.itemElement.style.height = this.height + 'px';
     this.itemElement.style.left = this.positionX + 'px';
     this.itemElement.style.bottom = this.positionY + 'px';
-    this.itemElement.style.backgroundColor = '#33FF00';
   }
 }
 
 const player = new Player();
-// generate items every 2s
-const itemsArr = [];
+// generate good items every 2s
+const goodItemsArr = [];
 setInterval(() => {
-  const item = new Items();
-  itemsArr.push(item);
-  if (itemsArr.length > 2) {
-    itemsArr[0].removeItem();
-    itemsArr.shift();
+  const goodItem = new Items('goodItem');
+  goodItemsArr.push(goodItem);
+  if (goodItemsArr.length > 2) {
+    goodItemsArr[0].removeItem();
+    goodItemsArr.shift();
   }
 }, 2000);
 
-// collision detection + remove item
+// good items: collision detection + remove item
 let gameScore = 0;
 setInterval(() => {
-  itemsArr.forEach((item) => {
+  goodItemsArr.forEach((goodItem) => {
     if (
-      player.positionX < item.positionX + item.width &&
-      player.positionX + player.width > item.positionX &&
-      player.positionY < item.positionY + item.height &&
-      player.positionY + player.height > item.positionY
+      player.positionX < goodItem.positionX + goodItem.width &&
+      player.positionX + player.width > goodItem.positionX &&
+      player.positionY < goodItem.positionY + goodItem.height &&
+      player.positionY + player.height > goodItem.positionY
     ) {
       gameScore += 10000;
-      item.removeItem();
-      itemsArr.shift();
+      goodItem.removeItem();
+      goodItemsArr.shift();
       const displayScore = document.getElementById('showScore');
       displayScore.innerText = gameScore;
+    }
+  });
+}, 10);
+
+// generate bad items every 2s
+const badItemsArr = [];
+setInterval(() => {
+  const badItem = new Items('badItem');
+  badItemsArr.push(badItem);
+  if (badItemsArr.length > 5) {
+    badItemsArr[0].removeItem();
+    badItemsArr.shift();
+  }
+}, 2000);
+
+// bad items: collision detection + remove item
+setInterval(() => {
+  badItemsArr.forEach((badItem) => {
+    if (
+      player.positionX < badItem.positionX + badItem.width &&
+      player.positionX + player.width > badItem.positionX &&
+      player.positionY < badItem.positionY + badItem.height &&
+      player.positionY + player.height > badItem.positionY
+    ) {
+      clearInterval(player.intervalId);
+      player.intervalId = null;
+      location.href = 'gameover.html';
     }
   });
 }, 10);
