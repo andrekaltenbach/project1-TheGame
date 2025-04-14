@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 3em;
+    color: #33FF00;
+    text-align: center;
+}
+
+#board {
+    width: 800px;
+    height: 700px;
+    background-color: blueviolet;
+    position: relative;
+    overflow: hidden;
+}
+
+#pitch {
+    width: 500px;
+    height: 500px;
+    background-color: black;
+    position: absolute;
+    overflow: hidden;
+    bottom: 50px;
+    left: 250px;
+}
+
+#player {
+    width: 20px;
+    height: 20px;
+    background-color: #FFB000;
+    position: absolute;
+    bottom: 240px;
+    left: 240px;
+}
