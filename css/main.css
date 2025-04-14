@@ -1,33 +1,47 @@
 body {
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    font-size: 3em;
-    color: #33FF00;
-    text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 #board {
-    width: 800px;
-    height: 700px;
-    background-color: blueviolet;
-    position: relative;
-    overflow: hidden;
+  width: 800px;
+  height: 700px;
+  background-color: blueviolet;
+  position: relative;
+  overflow: hidden;
 }
 
+h1 {
+  font-size: 3em;
+  color: #33FF00;
+  text-align: center;
+}
+
+#highscore {
+  font-size: 1.5em;
+  color: white;
+  position: absolute;
+  bottom: 400px;
+  left: 40px;
+}
+
+
+
 #pitch {
-    width: 500px;
-    height: 500px;
-    background-color: black;
-    position: absolute;
-    overflow: hidden;
-    bottom: 50px;
-    left: 250px;
+  width: 500px;
+  height: 500px;
+  background-color: black;
+  position: absolute;
+  overflow: hidden;
+  bottom: 50px;
+  left: 250px;
 }
 
 #player {
-    background-color: #FFB000;
-    position: absolute;
+  background-color: #FFB000;
+  position: absolute;
+}
+
+.item {
+  position: absolute;
 }
