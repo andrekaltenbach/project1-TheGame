@@ -82,22 +82,7 @@ setInterval(() => {
 // generate good items every 2s
 const goodItemsArr = [];
 setInterval(() => {
-  while (true) {
-    const goodItem = new Items('goodItem');
-    if (
-      avoidOverlay(goodItem, goodItemsArr) ||
-      avoidOverlay(goodItem, badItemsArr)
-    ) {
-      goodItem.removeItem();
-    } else {
-      goodItemsArr.push(goodItem);
-      if (goodItemsArr.length > 2) {
-        goodItemsArr[0].removeItem();
-        goodItemsArr.shift();
-      }
-      return false;
-    }
-  }
+  createNewItem('goodItem', goodItemsArr, 2, (attempt = 0), (maxAttempts = 10));
 }, 2000);
 
 // good items: collision detection + remove item
@@ -117,22 +102,7 @@ setInterval(() => {
 // generate bad items every 2s
 const badItemsArr = [];
 setInterval(() => {
-  while (true) {
-    const badItem = new Items('badItem');
-    if (
-      avoidOverlay(badItem, goodItemsArr) ||
-      avoidOverlay(badItem, badItemsArr)
-    ) {
-      badItem.removeItem();
-    } else {
-      badItemsArr.push(badItem);
-      if (badItemsArr.length > 5) {
-        badItemsArr[0].removeItem();
-        badItemsArr.shift();
-      }
-      return false;
-    }
-  }
+  createNewItem('badItem', badItemsArr, 5, (attempt = 0), (maxAttempts = 10));
 }, 2000);
 
 // bad items: collision detection + call gameover page
@@ -180,4 +150,36 @@ function avoidOverlay(element, arr) {
   return arr.some((arrElement) => {
     return collisionDetection(element, arrElement);
   });
+}
+
+function createNewItem(
+  itemType,
+  itemArr,
+  maxArrLength,
+  attempt = 0,
+  maxAttempts = 10
+) {
+  const newItem = new Items(itemType);
+
+  if (
+    avoidOverlay(newItem, goodItemsArr) ||
+    avoidOverlay(newItem, badItemsArr)
+  ) {
+    newItem.removeItem();
+
+    if (attempt < maxAttempts) {
+      return createNewItem(
+        itemType,
+        itemArr,
+        maxArrLength,
+        attempt + 1,
+        maxAttempts
+      );
+    }
+  }
+  itemArr.push(newItem);
+  if (itemArr.length > maxArrLength) {
+    itemArr[0].removeItem();
+    itemArr.shift();
+  }
 }
