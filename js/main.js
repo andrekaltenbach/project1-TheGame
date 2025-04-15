@@ -83,6 +83,29 @@ setInterval(() => {
 const goodItemsArr = [];
 setInterval(() => {
   const goodItem = new Items('goodItem');
+  // avoid overlay of generated items
+  goodItemsArr.forEach((goodItemInstance) => {
+    if (
+      goodItem.positionX <
+        goodItemInstance.positionX + goodItemInstance.width &&
+      goodItem.positionX + goodItem.width > goodItemInstance.positionX &&
+      goodItem.positionY <
+        goodItemInstance.positionY + goodItemInstance.height &&
+      goodItem.positionY + goodItem.height > goodItemInstance.positionY
+    ) {
+      goodItem.positionX += 25;
+    }
+  });
+  badItemsArr.forEach((badItemInstance) => {
+    if (
+      goodItem.positionX < badItemInstance.positionX + badItemInstance.width &&
+      goodItem.positionX + goodItem.width > badItemInstance.positionX &&
+      goodItem.positionY < badItemInstance.positionY + badItemInstance.height &&
+      goodItem.positionY + goodItem.height > badItemInstance.positionY
+    ) {
+      goodItem.positionX += 25;
+    }
+  });
   goodItemsArr.push(goodItem);
   if (goodItemsArr.length > 2) {
     goodItemsArr[0].removeItem();
@@ -93,7 +116,7 @@ setInterval(() => {
 // good items: collision detection + remove item
 let gameScore = 0;
 setInterval(() => {
-  goodItemsArr.forEach((goodItem) => {
+  goodItemsArr.forEach((goodItem, i) => {
     if (
       player.positionX < goodItem.positionX + goodItem.width &&
       player.positionX + player.width > goodItem.positionX &&
@@ -102,7 +125,7 @@ setInterval(() => {
     ) {
       gameScore += 10000;
       goodItem.removeItem();
-      goodItemsArr.shift();
+      goodItemsArr.splice(i, 1);
       const displayScore = document.getElementById('showScore');
       displayScore.innerText = gameScore;
     }
@@ -113,6 +136,28 @@ setInterval(() => {
 const badItemsArr = [];
 setInterval(() => {
   const badItem = new Items('badItem');
+  // Avoid overlay of generated items
+  goodItemsArr.forEach((goodItemInstance) => {
+    if (
+      badItem.positionX < goodItemInstance.positionX + goodItemInstance.width &&
+      badItem.positionX + badItem.width > goodItemInstance.positionX &&
+      badItem.positionY <
+        goodItemInstance.positionY + goodItemInstance.height &&
+      badItem.positionY + badItem.height > goodItemInstance.positionY
+    ) {
+      badItem.positionX += 25;
+    }
+  });
+  badItemsArr.forEach((badItemInstance) => {
+    if (
+      badItem.positionX < badItemInstance.positionX + badItemInstance.width &&
+      badItem.positionX + badItem.width > badItemInstance.positionX &&
+      badItem.positionY < badItemInstance.positionY + badItemInstance.height &&
+      badItem.positionY + badItem.height > badItemInstance.positionY
+    ) {
+      badItem.positionX += 25;
+    }
+  });
   badItemsArr.push(badItem);
   if (badItemsArr.length > 5) {
     badItemsArr[0].removeItem();
@@ -120,7 +165,7 @@ setInterval(() => {
   }
 }, 2000);
 
-// bad items: collision detection + remove item
+// bad items: collision detection + call gameover page
 setInterval(() => {
   badItemsArr.forEach((badItem) => {
     if (
