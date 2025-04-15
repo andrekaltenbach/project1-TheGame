@@ -60,6 +60,13 @@ h1 {
   color: red;
 }
 
+#page-gameover>p {
+  font-size: 3em;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
 #gameover-score {
   font-size: 3em;
   color: black;

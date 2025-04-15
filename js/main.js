@@ -82,34 +82,21 @@ setInterval(() => {
 // generate good items every 2s
 const goodItemsArr = [];
 setInterval(() => {
-  const goodItem = new Items('goodItem');
-  // avoid overlay of generated items
-  goodItemsArr.forEach((goodItemInstance) => {
+  while (true) {
+    const goodItem = new Items('goodItem');
     if (
-      goodItem.positionX <
-        goodItemInstance.positionX + goodItemInstance.width &&
-      goodItem.positionX + goodItem.width > goodItemInstance.positionX &&
-      goodItem.positionY <
-        goodItemInstance.positionY + goodItemInstance.height &&
-      goodItem.positionY + goodItem.height > goodItemInstance.positionY
+      avoidOverlay(goodItem, goodItemsArr) ||
+      avoidOverlay(goodItem, badItemsArr)
     ) {
-      goodItem.positionX += 25;
+      goodItem.removeItem();
+    } else {
+      goodItemsArr.push(goodItem);
+      if (goodItemsArr.length > 2) {
+        goodItemsArr[0].removeItem();
+        goodItemsArr.shift();
+      }
+      return false;
     }
-  });
-  badItemsArr.forEach((badItemInstance) => {
-    if (
-      goodItem.positionX < badItemInstance.positionX + badItemInstance.width &&
-      goodItem.positionX + goodItem.width > badItemInstance.positionX &&
-      goodItem.positionY < badItemInstance.positionY + badItemInstance.height &&
-      goodItem.positionY + goodItem.height > badItemInstance.positionY
-    ) {
-      goodItem.positionX += 25;
-    }
-  });
-  goodItemsArr.push(goodItem);
-  if (goodItemsArr.length > 2) {
-    goodItemsArr[0].removeItem();
-    goodItemsArr.shift();
   }
 }, 2000);
 
@@ -117,12 +104,7 @@ setInterval(() => {
 let gameScore = 0;
 setInterval(() => {
   goodItemsArr.forEach((goodItem, i) => {
-    if (
-      player.positionX < goodItem.positionX + goodItem.width &&
-      player.positionX + player.width > goodItem.positionX &&
-      player.positionY < goodItem.positionY + goodItem.height &&
-      player.positionY + player.height > goodItem.positionY
-    ) {
+    if (collisionDetection(player, goodItem)) {
       gameScore += 10000;
       goodItem.removeItem();
       goodItemsArr.splice(i, 1);
@@ -135,45 +117,28 @@ setInterval(() => {
 // generate bad items every 2s
 const badItemsArr = [];
 setInterval(() => {
-  const badItem = new Items('badItem');
-  // Avoid overlay of generated items
-  goodItemsArr.forEach((goodItemInstance) => {
+  while (true) {
+    const badItem = new Items('badItem');
     if (
-      badItem.positionX < goodItemInstance.positionX + goodItemInstance.width &&
-      badItem.positionX + badItem.width > goodItemInstance.positionX &&
-      badItem.positionY <
-        goodItemInstance.positionY + goodItemInstance.height &&
-      badItem.positionY + badItem.height > goodItemInstance.positionY
+      avoidOverlay(badItem, goodItemsArr) ||
+      avoidOverlay(badItem, badItemsArr)
     ) {
-      badItem.positionX += 25;
+      badItem.removeItem();
+    } else {
+      badItemsArr.push(badItem);
+      if (badItemsArr.length > 5) {
+        badItemsArr[0].removeItem();
+        badItemsArr.shift();
+      }
+      return false;
     }
-  });
-  badItemsArr.forEach((badItemInstance) => {
-    if (
-      badItem.positionX < badItemInstance.positionX + badItemInstance.width &&
-      badItem.positionX + badItem.width > badItemInstance.positionX &&
-      badItem.positionY < badItemInstance.positionY + badItemInstance.height &&
-      badItem.positionY + badItem.height > badItemInstance.positionY
-    ) {
-      badItem.positionX += 25;
-    }
-  });
-  badItemsArr.push(badItem);
-  if (badItemsArr.length > 5) {
-    badItemsArr[0].removeItem();
-    badItemsArr.shift();
   }
 }, 2000);
 
 // bad items: collision detection + call gameover page
 setInterval(() => {
   badItemsArr.forEach((badItem) => {
-    if (
-      player.positionX < badItem.positionX + badItem.width &&
-      player.positionX + player.width > badItem.positionX &&
-      player.positionY < badItem.positionY + badItem.height &&
-      player.positionY + player.height > badItem.positionY
-    ) {
+    if (collisionDetection(player, badItem)) {
       clearInterval(player.intervalId);
       player.intervalId = null;
       location.href = 'gameover.html';
@@ -197,3 +162,22 @@ document.addEventListener('keydown', (e) => {
     player.movePlayer('down');
   }
 });
+
+function collisionDetection(elementOne, elementTwo) {
+  if (
+    elementOne.positionX < elementTwo.positionX + elementTwo.width &&
+    elementOne.positionX + elementOne.width > elementTwo.positionX &&
+    elementOne.positionY < elementTwo.positionY + elementTwo.height &&
+    elementOne.positionY + elementOne.height > elementTwo.positionY
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function avoidOverlay(element, arr) {
+  return arr.some((arrElement) => {
+    return collisionDetection(element, arrElement);
+  });
+}
