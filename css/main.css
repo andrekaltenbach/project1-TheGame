@@ -9,6 +9,11 @@ body {
   background-color: blueviolet;
   position: relative;
   overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: auto;
+  
 }
 
 h1 {
@@ -55,7 +60,7 @@ h1 {
   color: red;
 }
 
-#page-gameover>h2 {
+#gameover-score {
   font-size: 3em;
   color: black;
   font-weight: bold;

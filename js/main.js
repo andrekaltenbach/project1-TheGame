@@ -4,7 +4,7 @@ class Player {
     this.height = 20;
     this.positionX = 240;
     this.positionY = 240;
-    this.intervalId;
+    this.intervalId = null;
     this.updateUi();
   }
 
@@ -64,6 +64,21 @@ class Items {
 }
 
 const player = new Player();
+
+// avoid player run out of pitch
+setInterval(() => {
+  const pitchElement = document.getElementById('pitch');
+  if (player.positionX + player.width > pitchElement.offsetWidth) {
+    player.positionX = 0;
+  } else if (player.positionX < 0) {
+    player.positionX = pitchElement.offsetWidth - 1;
+  } else if (player.positionY + player.height > pitchElement.offsetHeight) {
+    player.positionY = 0;
+  } else if (player.positionY < 0) {
+    player.positionY = pitchElement.offsetHeight - 1;
+  }
+}, 100);
+
 // generate good items every 2s
 const goodItemsArr = [];
 setInterval(() => {
