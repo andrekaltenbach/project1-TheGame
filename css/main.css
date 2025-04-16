@@ -17,25 +17,46 @@ body {
 }
 
 h1 {
-  font-size: 3em;
-  color: #33FF00;
+  font-family: "Silkscreen", sans-serif;
+  font-size: 4em;
+  font-weight: 800;
+  color: #ffd000;
   text-align: center;
+  margin: 30px auto;
 }
 
 #highscore {
-  font-size: 1.5em;
+  font-family: "Nabla", system-ui, Arial, Helvetica, sans-serif;
+  font-size: 1.3em;
   color: white;
   position: absolute;
-  bottom: 400px;
+  bottom: 430px;
   left: 40px;
+  margin: 0;
+}
+
+#highscore>h2, #score>h2 {
+  margin: 0;
+}
+
+#showHighscore {
+  font-size: 1.7em;
+  margin: 0;
 }
 
 #score {
-  font-size: 1.5em;
+  font-family: "Nabla", system-ui, Arial, Helvetica, sans-serif;
+  font-size: 1.3em;
   color: white;
   position: absolute;
-  bottom: 250px;
+  bottom: 300px;
   left: 40px;
+  margin: 0;
+}
+
+#showYourScore {
+  font-size: 1.7em;
+  margin: 0;
 }
 
 #pitch {
@@ -49,18 +70,18 @@ h1 {
 }
 
 #player {
-  background-color: #FFB000;
+  background-color: #33FF00;
   position: absolute;
 }
 
 .goodItem {
+  background-color: #FFB000;
   position: absolute;
-  background-color: #33FF00;
 }
 
 .badItem {
+  background-color: #374f6b;
   position: absolute;
-  background-color: red;
 }
 
 #gameoverDiv {
@@ -76,6 +97,7 @@ h1 {
 }
 
 #gameoverDiv>h1 {
+  font-family: "Rubik Wet Paint", system-ui, Arial, Helvetica, sans-serif;
   font-size: 4em;
   color: red;
 }
@@ -98,8 +120,10 @@ h1 {
 }
 
 #newHighscore>h2 {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
   text-align: center;
-  padding-top: 30px;
+  padding: 30px 0;
+  margin: 0;
   font-size: 2em;
   color: white;
 }
@@ -109,15 +133,17 @@ h1 {
   width: 300px;
   text-align: center;
   margin: 0 auto;
-
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
   font-size: 4em;
+  font-weight: 600;
   color: white;
   padding: 0;
 }
 
 .play-again>a {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
   font-size: 2em;
-  font-weight: bold;
+  font-weight: bolder;
   color: black;
   display: block;
   text-align: center;
