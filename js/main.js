@@ -107,7 +107,7 @@ const goodCollisionIntervallId = setInterval(() => {
 const badItemsArr = [];
 let badItemsArrMax = 5;
 let level = 0;
-setInterval(() => {
+const levelSetIntervallId = setInterval(() => {
   badItemsArrMax++;
   level++;
   const setLevel = document.getElementById('level');
@@ -127,6 +127,7 @@ const badCollisionIntervallId = setInterval(() => {
       clearInterval(createBadIntervalId);
       clearInterval(goodCollisionIntervallId);
       clearInterval(badCollisionIntervallId);
+      clearInterval(levelSetIntervallId);
       const gameOverDiv = document.getElementById('gameoverDiv');
       gameOverDiv.style.display = 'block';
 
