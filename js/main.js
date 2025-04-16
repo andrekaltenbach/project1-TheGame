@@ -64,7 +64,10 @@ class Items {
 }
 
 const player = new Player();
-
+const highScore = document.getElementById('showHighscore');
+if (localStorage.getItem('highscore')) {
+  highScore.innerText = localStorage.getItem('highscore');
+}
 // avoid player run out of pitch
 setInterval(() => {
   const pitchElement = document.getElementById('pitch');
@@ -93,7 +96,7 @@ const goodCollisionIntervallId = setInterval(() => {
       gameScore += 10000;
       goodItem.removeItem();
       goodItemsArr.splice(i, 1);
-      const displayScore = document.getElementById('showScore');
+      const displayScore = document.getElementById('showYourScore');
       displayScore.innerText = gameScore;
     }
   });
@@ -116,8 +119,15 @@ const badCollisionIntervallId = setInterval(() => {
       clearInterval(badCollisionIntervallId);
       const gameOverDiv = document.getElementById('gameoverDiv');
       gameOverDiv.style.display = 'block';
-      document.getElementsByTagName('#gameoverDiv>p').innerText = gameScore;
-      // location.href = 'gameover.html';
+
+      if (gameScore > highScore.innerText) {
+        highScore.innerText = gameScore;
+        localStorage.setItem('highscore', gameScore);
+        const newHighscoreDiv = document.getElementById('newHighscore');
+        newHighscoreDiv.style.display = 'block';
+        const showNewHighscore = document.getElementById('showNewHighscore');
+        showNewHighscore.innerText = gameScore;
+      }
     }
   });
 }, 10);
