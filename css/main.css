@@ -59,6 +59,46 @@ h1 {
   margin: 0;
 }
 
+#instructions {
+  position: absolute;
+  bottom: 50px;
+  left: 40px;
+  margin: 0;
+  width: 180px;
+}
+
+#instructions>h3 {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  margin: 5px 0;
+}
+
+#instructions>p {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+#instructions>p>img {
+  float: right;
+  width: 50px;
+  height: auto;
+  margin-right: 30px;
+  margin-top: 3px;
+}
+
+.gold {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #FFB000;
+}
+
+.police {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #374f6b;
+}
+
 #pitch {
   width: 500px;
   height: 500px;
