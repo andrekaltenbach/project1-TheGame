@@ -55,6 +55,31 @@ h1 {
   background-color: red;
 }
 
+#gameoverDiv {
+  display: none;
+  width: 500px;
+  height: 500px;
+  background-color: #33FF00;
+  position: absolute;
+  overflow: hidden;
+  bottom: 50px;
+  left: 250px;
+  z-index: 1;
+}
+
+#gameoverDiv>h1 {
+  font-size: 4em;
+  color: red;
+}
+
+#gameoverDiv>p {
+  font-size: 3em;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+
 #page-gameover>h1 {
   font-size: 5em;
   color: red;

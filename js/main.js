@@ -81,13 +81,13 @@ setInterval(() => {
 
 // generate good items every 2s
 const goodItemsArr = [];
-setInterval(() => {
+const createGoodIntervalId = setInterval(() => {
   createNewItem('goodItem', goodItemsArr, 2, (attempt = 0), (maxAttempts = 10));
 }, 2000);
 
 // good items: collision detection + remove item
 let gameScore = 0;
-setInterval(() => {
+const goodCollisionIntervallId = setInterval(() => {
   goodItemsArr.forEach((goodItem, i) => {
     if (collisionDetection(player, goodItem)) {
       gameScore += 10000;
@@ -101,17 +101,23 @@ setInterval(() => {
 
 // generate bad items every 2s
 const badItemsArr = [];
-setInterval(() => {
+const createBadIntervalId = setInterval(() => {
   createNewItem('badItem', badItemsArr, 5, (attempt = 0), (maxAttempts = 10));
 }, 2000);
 
 // bad items: collision detection + call gameover page
-setInterval(() => {
+const badCollisionIntervallId = setInterval(() => {
   badItemsArr.forEach((badItem) => {
     if (collisionDetection(player, badItem)) {
       clearInterval(player.intervalId);
-      player.intervalId = null;
-      location.href = 'gameover.html';
+      clearInterval(createGoodIntervalId);
+      clearInterval(createBadIntervalId);
+      clearInterval(goodCollisionIntervallId);
+      clearInterval(badCollisionIntervallId);
+      const gameOverDiv = document.getElementById('gameoverDiv');
+      gameOverDiv.style.display = 'block';
+      document.getElementsByTagName('#gameoverDiv>p').innerText = gameScore;
+      // location.href = 'gameover.html';
     }
   });
 }, 10);
@@ -132,6 +138,10 @@ document.addEventListener('keydown', (e) => {
     player.movePlayer('down');
   }
 });
+
+/*************/
+/* functions */
+/*************/
 
 function collisionDetection(elementOne, elementTwo) {
   if (
