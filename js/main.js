@@ -84,8 +84,9 @@ setInterval(() => {
 
 // generate good items every 2s
 const goodItemsArr = [];
+let goodItemsArrMax = 3;
 const createGoodIntervalId = setInterval(() => {
-  createNewItem('goodItem', goodItemsArr, 2, (attempt = 0), (maxAttempts = 10));
+  createNewItem('goodItem', goodItemsArr, goodItemsArrMax, (attempt = 0), (maxAttempts = 10));
 }, 2000);
 
 // good items: collision detection + remove item
@@ -104,8 +105,17 @@ const goodCollisionIntervallId = setInterval(() => {
 
 // generate bad items every 2s
 const badItemsArr = [];
+let badItemsArrMax = 5;
+let level = 0;
+setInterval(() => {
+  badItemsArrMax++;
+  level++;
+  const setLevel = document.getElementById('level');
+  setLevel.innerText = 'Level ' + level;
+  console.log(setLevel);
+}, 120000);
 const createBadIntervalId = setInterval(() => {
-  createNewItem('badItem', badItemsArr, 5, (attempt = 0), (maxAttempts = 10));
+  createNewItem('badItem', badItemsArr, badItemsArrMax, (attempt = 0), (maxAttempts = 10));
 }, 2000);
 
 // bad items: collision detection + call gameover page
@@ -172,29 +182,14 @@ function avoidOverlay(element, arr) {
   });
 }
 
-function createNewItem(
-  itemType,
-  itemArr,
-  maxArrLength,
-  attempt = 0,
-  maxAttempts = 10
-) {
+function createNewItem(itemType, itemArr, maxArrLength, attempt = 0, maxAttempts = 10) {
   const newItem = new Items(itemType);
 
-  if (
-    avoidOverlay(newItem, goodItemsArr) ||
-    avoidOverlay(newItem, badItemsArr)
-  ) {
+  if (avoidOverlay(newItem, goodItemsArr) || avoidOverlay(newItem, badItemsArr)) {
     newItem.removeItem();
 
     if (attempt < maxAttempts) {
-      return createNewItem(
-        itemType,
-        itemArr,
-        maxArrLength,
-        attempt + 1,
-        maxAttempts
-      );
+      return createNewItem(itemType, itemArr, maxArrLength, attempt + 1, maxAttempts);
     }
   }
   itemArr.push(newItem);
