@@ -79,26 +79,6 @@ h1 {
   text-align: center;
 }
 
-
-#page-gameover>h1 {
-  font-size: 5em;
-  color: red;
-}
-
-#page-gameover>p {
-  font-size: 3em;
-  color: black;
-  font-weight: bold;
-  text-align: center;
-}
-
-#gameover-score {
-  font-size: 3em;
-  color: black;
-  font-weight: bold;
-  text-align: center;
-}
-
 .play-again>a {
   font-size: 2em;
   font-weight: bold;
