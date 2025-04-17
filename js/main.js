@@ -68,6 +68,20 @@ const highScore = document.getElementById('showHighscore');
 if (localStorage.getItem('highscore')) {
   highScore.innerText = localStorage.getItem('highscore');
 }
+
+const gameMusic = document.querySelector('audio');
+gameMusic.loop = true;
+// Play audio only after user interaction
+const handleFirstInteraction = () => {
+  gameMusic.play().catch((error) => {
+    console.error('Audio play failed:', error); // handle the error in case play still fails
+  });
+  document.removeEventListener('click', handleFirstInteraction); // Remove the listener after playing
+  document.removeEventListener('keydown', handleFirstInteraction); // Remove the listener after playing
+};
+document.addEventListener('click', handleFirstInteraction);
+document.addEventListener('keydown', handleFirstInteraction);
+
 // avoid player run out of pitch
 setInterval(() => {
   const pitchElement = document.getElementById('pitch');
@@ -97,6 +111,8 @@ const goodCollisionIntervallId = setInterval(() => {
       gameScore += 10000;
       goodItem.removeItem();
       goodItemsArr.splice(i, 1);
+      const audio = new Audio('./sounds/collectGold.mp3');
+      audio.play();
       const displayScore = document.getElementById('showYourScore');
       displayScore.innerText = gameScore;
     }
@@ -112,8 +128,7 @@ const levelSetIntervallId = setInterval(() => {
   level++;
   const setLevel = document.getElementById('level');
   setLevel.innerText = 'Level ' + level;
-  console.log(setLevel);
-}, 120000);
+}, 90000);
 const createBadIntervalId = setInterval(() => {
   createNewItem('badItem', badItemsArr, badItemsArrMax, (attempt = 0), (maxAttempts = 10));
 }, 2000);
@@ -128,6 +143,10 @@ const badCollisionIntervallId = setInterval(() => {
       clearInterval(goodCollisionIntervallId);
       clearInterval(badCollisionIntervallId);
       clearInterval(levelSetIntervallId);
+      gameMusic.pause();
+      gameMusic.currentTime = 0;
+      const audio = new Audio('./sounds/game-over-arcade.mp3');
+      audio.play();
       const gameOverDiv = document.getElementById('gameoverDiv');
       gameOverDiv.style.display = 'block';
 
@@ -198,4 +217,11 @@ function createNewItem(itemType, itemArr, maxArrLength, attempt = 0, maxAttempts
     itemArr[0].removeItem();
     itemArr.shift();
   }
+}
+
+function handler() {
+  // This is the function the listener uses
+  return function listener(e) {
+    gameMusic.removeEventListener('ended', listener);
+  };
 }
