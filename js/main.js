@@ -64,20 +64,22 @@ class Items {
 }
 
 const player = new Player();
-const highScore = document.getElementById('showHighscore');
+
+// load highscore from localStorage
+const highScore = document.getElementById('show-highscore');
 if (localStorage.getItem('highscore')) {
   highScore.innerText = localStorage.getItem('highscore');
 }
 
+// Play game music only after user interaction
 const gameMusic = document.querySelector('audio');
 gameMusic.loop = true;
-// Play audio only after user interaction
 const handleFirstInteraction = () => {
   gameMusic.play().catch((error) => {
-    console.error('Audio play failed:', error); // handle the error in case play still fails
+    console.error('Audio play failed:', error);
   });
-  document.removeEventListener('click', handleFirstInteraction); // Remove the listener after playing
-  document.removeEventListener('keydown', handleFirstInteraction); // Remove the listener after playing
+  document.removeEventListener('click', handleFirstInteraction);
+  document.removeEventListener('keydown', handleFirstInteraction);
 };
 document.addEventListener('click', handleFirstInteraction);
 document.addEventListener('keydown', handleFirstInteraction);
@@ -113,7 +115,7 @@ const goodCollisionIntervallId = setInterval(() => {
       goodItemsArr.splice(i, 1);
       const audio = new Audio('./sounds/collectGold.mp3');
       audio.play();
-      const displayScore = document.getElementById('showYourScore');
+      const displayScore = document.getElementById('show-score');
       displayScore.innerText = gameScore;
     }
   });
@@ -147,17 +149,19 @@ const badCollisionIntervallId = setInterval(() => {
       gameMusic.currentTime = 0;
       const audio = new Audio('./sounds/game-over-arcade.mp3');
       audio.play();
-      const gameOverDiv = document.getElementById('gameoverDiv');
+      const gameOverDiv = document.getElementById('gameover-div');
       gameOverDiv.style.display = 'block';
-
       if (gameScore > highScore.innerText) {
         highScore.innerText = gameScore;
         localStorage.setItem('highscore', gameScore);
-        const newHighscoreDiv = document.getElementById('newHighscore');
+        const newHighscoreDiv = document.getElementById('new-highscore');
         newHighscoreDiv.style.display = 'block';
-        const showNewHighscore = document.getElementById('showNewHighscore');
+        const showNewHighscore = document.querySelector('.show-new-highscore');
         showNewHighscore.innerText = gameScore;
       }
+      document.addEventListener('keydown', (e) => {
+        window.location.reload();
+      });
     }
   });
 }, 10);
@@ -220,7 +224,6 @@ function createNewItem(itemType, itemArr, maxArrLength, attempt = 0, maxAttempts
 }
 
 function handler() {
-  // This is the function the listener uses
   return function listener(e) {
     gameMusic.removeEventListener('ended', listener);
   };

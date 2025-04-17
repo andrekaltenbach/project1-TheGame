@@ -3,6 +3,12 @@ body {
   padding: 0;
 }
 
+h1 {
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  text-align: center;
+}
+
 #board {
   width: 900px;
   height: 700px;
@@ -13,63 +19,20 @@ body {
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: auto;
-  
-}
-
-h1 {
-  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
-  font-size: 3em;
-  font-weight: 800;
-  color: #fdda61;
-  text-align: center;
-  margin: 50px auto;
 }
 
 #highscore {
-  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
-  color: #fdda61;
-  position: absolute;
   bottom: 430px;
-  left: 40px;
-  margin-bottom: 20px;
-}
-
-#highscore>h2, #score>h2 {
-  font-size: 1.7em;
-  margin-bottom: 30px;
-}
-
-#showHighscore {
-  font-size: 1.7em;
-  margin: 0;
 }
 
 #score {
-  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
-  color: #fdda61;
-  position: absolute;
   bottom: 300px;
-  left: 40px;
-  margin-bottom: 20px;
-}
-
-#showYourScore {
-  font-size: 1.7em;
-  margin: 0;
 }
 
 #level {
-  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
   font-size: 1.4em;
-  color: #fdda61;
-  position: absolute;
   bottom: 250px;
-  left: 40px;
   margin: 0;
-}
-
-#level>span {
-  font-size: 1.2em;
 }
 
 #instructions {
@@ -78,6 +41,110 @@ h1 {
   left: 40px;
   margin: 0;
   width: 250px;
+}
+
+#pitch {
+  background-color: #00000d;
+}
+
+#player {
+  background-color: #0cb625;
+  position: absolute;
+}
+
+#gameover-div {
+  display: none;
+  background-color: #0cb625;
+  z-index: 1;
+}
+
+#new-highscore {
+  display: none;
+  background-color: #e62b00;
+  width: 400px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 32px;
+}
+
+#board>h1 {
+  font-size: 3em;
+  color: #fdda61;
+  margin: 50px auto;
+}
+
+#gameover-div>h1 {
+  font-size: 3.5em;
+  color: #e62b00;
+  margin: 30px auto;
+}
+
+.board-score {
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  color: #fdda61;
+  position: absolute;
+  left: 40px;
+  margin-bottom: 20px;
+}
+
+.board-score-heading {
+  font-size: 1.7em;
+  margin-bottom: 30px;
+}
+
+.board-score-show {
+  font-size: 1.7em;
+  margin: 0;
+}
+
+.gold {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #fdda61;
+}
+
+.police {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #3418d5;
+}
+
+.pitch-div {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  overflow: hidden;
+  bottom: 50px;
+  left: 350px;
+}
+
+.goodItem {
+  background-color: #fdda61;
+  position: absolute;
+}
+
+.badItem {
+  background-color: #3418d5;
+  position: absolute;
+}
+
+.show-new-highscore {
+  display: block;
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  font-size: 2.5em;
+  font-weight: 600;
+  color: #fffafa;
+  padding: 0;
+}
+
+#level>span {
+  font-size: 1.2em;
 }
 
 #instructions>h3 {
@@ -98,83 +165,7 @@ h1 {
   margin-top: 3px;
 }
 
-.gold {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: #fdda61;
-}
-
-.police {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: #3418d5;
-}
-
-#pitch {
-  width: 500px;
-  height: 500px;
-  background-color: #00000d;
-  position: absolute;
-  overflow: hidden;
-  bottom: 50px;
-  left: 350px;
-}
-
-#player {
-  background-color: #0cb625;
-  position: absolute;
-}
-
-.goodItem {
-  background-color: #fdda61;
-  position: absolute;
-}
-
-.badItem {
-  background-color: #3418d5;
-  position: absolute;
-}
-
-#gameoverDiv {
-  display: none;
-  width: 500px;
-  height: 500px;
-  background-color: #0cb625;
-  position: absolute;
-  overflow: hidden;
-  bottom: 50px;
-  left: 350px;
-  z-index: 1;
-}
-
-#gameoverDiv>h1 {
-  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
-  font-size: 3.5em;
-  color: #e62b00;
-  font-weight: 800;
-  margin: 50px auto;
-}
-
-#gameoverDiv>p {
-  font-size: 3em;
-  color: #00000d;
-  font-weight: bold;
-  text-align: center;
-}
-
-#newHighscore {
-  display: none;
-  background-color: #e62b00;
-  width: 400px;
-  height: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 32px;
-}
-
-#newHighscore>h2 {
+#new-highscore>h2 {
   font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
   text-align: center;
   padding: 30px 0;
@@ -183,27 +174,20 @@ h1 {
   color: #fffafa;
 }
 
-#showNewHighscore {
-  display: block;
-  width: 300px;
-  text-align: center;
-  margin: 0 auto;
-  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
-  font-size: 2.5em;
-  font-weight: 600;
-  color: #fffafa;
-  padding: 0;
-}
-
-.play-again>a {
+.play-again>p {
   font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
   font-size: 1.5em;
   font-weight: bolder;
+  line-height: 130%;
   color: #00000d;
   display: block;
-  width: 250px;
+  width: 400px;
   text-align: center;
   text-decoration: none;
   padding: 0;
   margin: 0 auto;
+}
+
+.play-again>p>span {
+  font-size: 0.75em;
 }

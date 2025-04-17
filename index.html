@@ -12,14 +12,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -28,15 +20,15 @@
   </audio>
   <div id="board">
     <h1>The Grand Heist</h1>
-    <div id="highscore">
-      <h2>Highscore</h2>
-      <p id="showHighscore">0</p>
+    <div id="highscore"  class="board-score">
+      <h2 class=score-heading >Highscore</h2>
+      <p id="show-highscore" class="board-score-show">0</p>
     </div>
-    <div id="score">
-      <h2>Score</h2>
-      <p id="showYourScore">0</p>
+    <div id="score"  class="board-score">
+      <h2 class=board-score-heading>Score</h2>
+      <p id="show-score" class="board-score-show">0</p>
     </div>
-    <p id="level">Level 0</p>
+    <p id="level" class="board-score">Level 1</p>
     <div id="instructions">
       <h3>Instructions</h3>
       <p>You are on the grand heist! Collect all the gold <span class="gold"></span> you can 
@@ -45,17 +37,17 @@
         keys on your keyboard.
       </p>
     </div>
-    <div id="gameoverDiv">
+    <div id="gameover-div" class="pitch-div">
       <h1>YOU GOT BUSTED</h1>
-      <div id="newHighscore">
+      <div id="new-highscore">
         <h2>NEW HIGHSCORE</h2>
-        <p id="showNewHighscore">0</p>
+        <p class="show-new-highscore">0</p>
       </div>
       <div class="play-again">
-          <a href="./index.html">PLAY AGAIN</a>
+          <p><span>press any key to</span><br>PLAY AGAIN </p>
       </div>  
     </div>
-    <div id="pitch">
+    <div id="pitch" class="pitch-div">
       <div id="player"></div>
     </div>
   </div>
