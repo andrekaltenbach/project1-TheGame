@@ -19,16 +19,16 @@ class Player {
   movePlayer(direction) {
     this.intervalId = setInterval(() => {
       if (direction === 'right') {
-        this.positionX += 1;
+        this.positionX += 2;
       } else if (direction === 'left') {
-        this.positionX -= 1;
+        this.positionX -= 2;
       } else if (direction === 'up') {
-        this.positionY += 1;
+        this.positionY += 2;
       } else if (direction === 'down') {
-        this.positionY -= 1;
+        this.positionY -= 2;
       }
       this.updateUi();
-    }, 1);
+    }, 8);
   }
 }
 
