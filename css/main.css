@@ -4,9 +4,9 @@ body {
 }
 
 #board {
-  width: 800px;
+  width: 900px;
   height: 700px;
-  background-color: blueviolet;
+  background-color: #6f3892;
   position: relative;
   overflow: hidden;
   margin-left: auto;
@@ -17,26 +17,26 @@ body {
 }
 
 h1 {
-  font-family: "Silkscreen", sans-serif;
-  font-size: 4em;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  font-size: 3em;
   font-weight: 800;
-  color: #ffd000;
+  color: #fdda61;
   text-align: center;
-  margin: 30px auto;
+  margin: 50px auto;
 }
 
 #highscore {
-  font-family: "Nabla", system-ui, Arial, Helvetica, sans-serif;
-  font-size: 1.3em;
-  color: white;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  color: #fdda61;
   position: absolute;
   bottom: 430px;
   left: 40px;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
 #highscore>h2, #score>h2 {
-  margin: 0;
+  font-size: 1.7em;
+  margin-bottom: 30px;
 }
 
 #showHighscore {
@@ -45,12 +45,12 @@ h1 {
 }
 
 #score {
-  font-family: "Nabla", system-ui, Arial, Helvetica, sans-serif;
-  font-size: 1.3em;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  color: #fdda61;
   position: absolute;
   bottom: 300px;
   left: 40px;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
 #showYourScore {
@@ -59,8 +59,9 @@ h1 {
 }
 
 #level {
-  font-family: "Nabla", system-ui, Arial, Helvetica, sans-serif;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
   font-size: 1.4em;
+  color: #fdda61;
   position: absolute;
   bottom: 250px;
   left: 40px;
@@ -76,7 +77,7 @@ h1 {
   bottom: 50px;
   left: 40px;
   margin: 0;
-  width: 180px;
+  width: 250px;
 }
 
 #instructions>h3 {
@@ -93,7 +94,7 @@ h1 {
   float: right;
   width: 50px;
   height: auto;
-  margin-right: 30px;
+  margin-right: 70px;
   margin-top: 3px;
 }
 
@@ -101,38 +102,38 @@ h1 {
   display: inline-block;
   width: 12px;
   height: 12px;
-  background-color: #FFB000;
+  background-color: #fdda61;
 }
 
 .police {
   display: inline-block;
   width: 12px;
   height: 12px;
-  background-color: #374f6b;
+  background-color: #3418d5;
 }
 
 #pitch {
   width: 500px;
   height: 500px;
-  background-color: black;
+  background-color: #00000d;
   position: absolute;
   overflow: hidden;
   bottom: 50px;
-  left: 250px;
+  left: 350px;
 }
 
 #player {
-  background-color: #33FF00;
+  background-color: #0cb625;
   position: absolute;
 }
 
 .goodItem {
-  background-color: #FFB000;
+  background-color: #fdda61;
   position: absolute;
 }
 
 .badItem {
-  background-color: #374f6b;
+  background-color: #3418d5;
   position: absolute;
 }
 
@@ -140,45 +141,46 @@ h1 {
   display: none;
   width: 500px;
   height: 500px;
-  background-color: #33FF00;
+  background-color: #0cb625;
   position: absolute;
   overflow: hidden;
   bottom: 50px;
-  left: 250px;
+  left: 350px;
   z-index: 1;
 }
 
 #gameoverDiv>h1 {
-  font-family: "Rubik Wet Paint", system-ui, Arial, Helvetica, sans-serif;
-  font-size: 4em;
-  color: red;
-  font-weight: 500;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  font-size: 3.5em;
+  color: #e62b00;
+  font-weight: 800;
+  margin: 50px auto;
 }
 
 #gameoverDiv>p {
   font-size: 3em;
-  color: black;
+  color: #00000d;
   font-weight: bold;
   text-align: center;
 }
 
 #newHighscore {
   display: none;
-  background-color: red;
+  background-color: #e62b00;
   width: 400px;
   height: 200px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
+  margin-bottom: 32px;
 }
 
 #newHighscore>h2 {
-  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
   text-align: center;
   padding: 30px 0;
   margin: 0;
   font-size: 2em;
-  color: white;
+  color: #fffafa;
 }
 
 #showNewHighscore {
@@ -186,21 +188,22 @@ h1 {
   width: 300px;
   text-align: center;
   margin: 0 auto;
-  font-family: "Rubik", Arial, Helvetica, sans-serif;
-  font-size: 4em;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  font-size: 2.5em;
   font-weight: 600;
-  color: white;
+  color: #fffafa;
   padding: 0;
 }
 
 .play-again>a {
-  font-family: "Rubik", Arial, Helvetica, sans-serif;
-  font-size: 2em;
+  font-family: "Press Start 2P", system-ui, Arial, Helvetica, sans-serif;
+  font-size: 1.5em;
   font-weight: bolder;
-  color: black;
+  color: #00000d;
   display: block;
+  width: 250px;
   text-align: center;
   text-decoration: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 }
