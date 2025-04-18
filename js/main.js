@@ -65,7 +65,6 @@ class Items {
 
 const player = new Player();
 
-// load highscore from localStorage
 const highScore = document.getElementById('show-highscore');
 if (localStorage.getItem('highscore')) {
   highScore.innerText = localStorage.getItem('highscore');
@@ -103,7 +102,7 @@ const goodItemsArr = [];
 let goodItemsArrMax = 3;
 const createGoodIntervalId = setInterval(() => {
   createNewItem('goodItem', goodItemsArr, goodItemsArrMax, (attempt = 0), (maxAttempts = 10));
-}, 2000);
+}, 1500);
 
 // good items: collision detection + remove item
 let gameScore = 0;
@@ -124,13 +123,13 @@ const goodCollisionIntervallId = setInterval(() => {
 // generate bad items every 2s
 const badItemsArr = [];
 let badItemsArrMax = 5;
-let level = 0;
+let level = 1;
 const levelSetIntervallId = setInterval(() => {
   badItemsArrMax++;
   level++;
   const setLevel = document.getElementById('level');
   setLevel.innerText = 'Level ' + level;
-}, 90000);
+}, 60000);
 const createBadIntervalId = setInterval(() => {
   createNewItem('badItem', badItemsArr, badItemsArrMax, (attempt = 0), (maxAttempts = 10));
 }, 2000);

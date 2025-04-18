@@ -16,5 +16,5 @@ If you hit gold you collect 10000 points. If you hit the police you get busted a
 
 ## Demo
 
-You can play the game here:
+You can play the game here:  
 <https://andrekaltenbach.github.io/project1-TheGame/>
